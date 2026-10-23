@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Dummy Playwright framework for Azure DevOps pipeline practice",
   "scripts": {
-    "test": "npx playwright test",
+    "test": "npx playwright test --config=playwright.config.ts",
     "test:chromium": "npx playwright test --project=chromium",
     "test:headed": "npx playwright test --headed",
     "test:report": "npx playwright show-report"
