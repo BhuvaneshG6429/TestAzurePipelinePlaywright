@@ -19,7 +19,7 @@ jobs:
         scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          npx playwright test -c playwright.service.config.ts
+          npx playwright test --config=playwright.service.config.ts --project=chromium
         addSpnToEnvironment: true
           
     - task: PublishPipelineArtifact@1
