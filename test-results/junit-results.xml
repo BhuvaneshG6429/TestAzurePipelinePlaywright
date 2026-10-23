@@ -1,0 +1,26 @@
+<testsuites id="" name="" tests="9" failures="0" skipped="0" errors="0" time="22.195365">
+<testsuite name="TC001_login.spec.ts" timestamp="2026-10-23T10:34:41.112Z" hostname="chromium" tests="3" failures="0" skipped="0" time="15.399" errors="0">
+<testcase name="TC001 - Login Tests › TC001_01 - Valid login should navigate to Secure Area" classname="TC001_login.spec.ts" time="6.746">
+</testcase>
+<testcase name="TC001 - Login Tests › TC001_02 - Invalid login should show error message" classname="TC001_login.spec.ts" time="3.272">
+</testcase>
+<testcase name="TC001 - Login Tests › TC001_03 - Login then logout should return to Login page" classname="TC001_login.spec.ts" time="5.381">
+</testcase>
+</testsuite>
+<testsuite name="TC002_checkboxes.spec.ts" timestamp="2026-10-23T10:34:41.112Z" hostname="chromium" tests="3" failures="0" skipped="0" time="11.82" errors="0">
+<testcase name="TC002 - Checkbox Tests › TC002_01 - First checkbox should be checkable" classname="TC002_checkboxes.spec.ts" time="6.358">
+</testcase>
+<testcase name="TC002 - Checkbox Tests › TC002_02 - Second checkbox should be uncheckable" classname="TC002_checkboxes.spec.ts" time="2.772">
+</testcase>
+<testcase name="TC002 - Checkbox Tests › TC002_03 - Page heading should display Checkboxes" classname="TC002_checkboxes.spec.ts" time="2.69">
+</testcase>
+</testsuite>
+<testsuite name="TC003_dropdown.spec.ts" timestamp="2026-10-23T10:34:41.112Z" hostname="chromium" tests="3" failures="0" skipped="0" time="9.206" errors="0">
+<testcase name="TC003 - Dropdown Tests › TC003_01 - Select Option 1 from dropdown" classname="TC003_dropdown.spec.ts" time="2.791">
+</testcase>
+<testcase name="TC003 - Dropdown Tests › TC003_02 - Select Option 2 from dropdown" classname="TC003_dropdown.spec.ts" time="3.616">
+</testcase>
+<testcase name="TC003 - Dropdown Tests › TC003_03 - Dropdown page heading should be visible" classname="TC003_dropdown.spec.ts" time="2.799">
+</testcase>
+</testsuite>
+</testsuites>

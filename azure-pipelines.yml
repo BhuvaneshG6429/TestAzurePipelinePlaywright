@@ -1,0 +1,92 @@
+﻿# ============================================================
+#  Azure DevOps CI Pipeline – Playwright Demo Framework
+#  Triggers on every push to main & pull requests
+# ============================================================
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  NODE_VERSION: "20.x"
+
+stages:
+  - stage: Test
+    displayName: "Run Playwright Tests"
+    jobs:
+      - job: PlaywrightTests
+        displayName: "Playwright E2E Tests"
+        timeoutInMinutes: 30
+
+        steps:
+          # ---------------------------------------------------
+          # 1. Setup Node.js
+          # ---------------------------------------------------
+          - task: NodeTool@0
+            displayName: "Use Node.js $(NODE_VERSION)"
+            inputs:
+              versionSpec: "$(NODE_VERSION)"
+
+          # ---------------------------------------------------
+          # 2. Install npm dependencies
+          # ---------------------------------------------------
+          - script: npm ci
+            displayName: "npm ci – install dependencies"
+
+          # ---------------------------------------------------
+          # 3. Install Playwright browsers (Chromium only for CI)
+          # ---------------------------------------------------
+          - script: npx playwright install chromium --with-deps
+            displayName: "Install Playwright Chromium browser"
+
+          # ---------------------------------------------------
+          # 4. Run Playwright tests
+          # ---------------------------------------------------
+          - script: npx playwright test --project=chromium
+            displayName: "Run Playwright Tests"
+            env:
+              CI: "true"
+            continueOnError: true   # publish reports even on failure
+
+          # ---------------------------------------------------
+          # 5. Publish JUnit test results to Azure Pipelines
+          # ---------------------------------------------------
+          - task: PublishTestResults@2
+            displayName: "Publish JUnit Test Results"
+            condition: always()
+            inputs:
+              testResultsFormat: "JUnit"
+              testResultsFiles: "test-results/junit-results.xml"
+              failTaskOnFailedTests: true
+              testRunTitle: "Playwright Demo Tests"
+
+          # ---------------------------------------------------
+          # 6. Publish HTML report as a pipeline artifact
+          # ---------------------------------------------------
+          - task: PublishPipelineArtifact@1
+            displayName: "Publish HTML Report"
+            condition: always()
+            inputs:
+              targetPath: "playwright-report"
+              artifact: "playwright-html-report"
+              publishLocation: "pipeline"
+
+          # ---------------------------------------------------
+          # 7. Publish screenshots / videos on failure
+          # ---------------------------------------------------
+          - task: PublishPipelineArtifact@1
+            displayName: "Publish Test Results (screenshots/videos)"
+            condition: always()
+            inputs:
+              targetPath: "test-results"
+              artifact: "playwright-test-results"
+              publishLocation: "pipeline"

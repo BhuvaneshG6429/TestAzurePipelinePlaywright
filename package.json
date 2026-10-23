@@ -1,0 +1,16 @@
+﻿{
+  "name": "playwright-demo-framework",
+  "version": "1.0.0",
+  "description": "Dummy Playwright framework for Azure DevOps pipeline practice",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^20.10.6",
+    "typescript": "^5.5.4"
+  }
+}
