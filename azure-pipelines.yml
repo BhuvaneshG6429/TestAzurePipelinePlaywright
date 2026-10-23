@@ -7,7 +7,12 @@ jobs:
       inputs:
         targetType: 'inline'
         script: 'npm ci'
-        workingDirectory: tests/ # update accordingly
+
+    - task: PowerShell@2
+      displayName: "Install Playwright browsers"
+      inputs:
+        targetType: 'inline'
+        script: 'npx playwright install --with-deps'
 
     - task: AzureCLI@2
       displayName: Run Playwright Test  
